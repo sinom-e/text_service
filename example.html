@@ -4,16 +4,19 @@
 
 <h1>Text Downloader</h1>
 
-<p>Enter your text below, and click the button to download a text file.</p>
+<p>Enter your text below, click "Send Text" button to send the text to the server, and click "Download" to save the text file.</p>
 
 <input type="text" id="text" name="text">
-<button onclick="sendRequest()">Get file</button>
+<button onclick="sendRequest()">Send Text</button>
+<button onclick="downloadFile()">Download</button>
 
 <script>
-	const downloadFile = (url) => {
+	fileUrl = 'no message has been sent';
+	
+	const downloadFile = () => {
 		//create downloadable link and name it
 		const link = document.createElement('a');
-		link.href = url;
+		link.href = fileUrl;
 		link.download = 'textfile.txt';
 		
 		//add download link to DOM, simulate clicking it, and remove the link
@@ -27,10 +30,13 @@
 		const xhr = new XMLHttpRequest();
 		xhr.open('POST', 'http://localhost:3000/upload');
 		xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+		
+		//set up asynchronous function to store the url recieved
+		//from the server. downloadFile(fileUrl) could also be
+		//called from this function.
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-				const fileUrl = xhr.responseText;
-				downloadFile(fileUrl);
+				fileUrl = xhr.responseText;
 			}
 		};
   

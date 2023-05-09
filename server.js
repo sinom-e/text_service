@@ -29,6 +29,7 @@ server.post('/upload', (req, res) => {
 			console.error(err);
 			res.status(500).send('Error writing file');
 		} else {
+			console.log(`wrote "${text}" to ${fileName}`);
 			const fileUrl = req.protocol + '://' + req.get('host') + '/' + fileName;
 			res.send(fileUrl);
 		}
