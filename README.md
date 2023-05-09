@@ -67,3 +67,5 @@ const downloadFile = (url) => {
 	document.body.removeChild(link);
 };
 ```
+# UML Sequence Diagram
+![UML diagram depicting client-server communication.](/assets/uml_diagram.png)
