@@ -22,6 +22,9 @@ const sendRequest = () => {
 	const xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://localhost:3000/upload');
 	xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+	
+	//define asynchronous function to handle server response and call
+	//download function
 	xhr.onreadystatechange = () => {
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			const fileUrl = xhr.responseText;
